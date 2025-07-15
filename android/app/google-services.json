@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "212183379142",
+    "project_id": "bistro-boss-a1ba7",
+    "storage_bucket": "bistro-boss-a1ba7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212183379142:android:637cf42ffe2ab029dafbc7",
+        "android_client_info": {
+          "package_name": "com.example.bistro_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212183379142-25s4d9ijldq5kkakbeqilkc5quobi039.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bistro_shop",
+            "certificate_hash": "ee5a146f291a640ceb91adccdd2b03de7760713b"
+          }
+        },
+        {
+          "client_id": "212183379142-ovcjfhalakioueupekm33ap1pjpj17se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9DD7gJD_MV-8YFszWl4catT4i7NBP7UM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212183379142-ovcjfhalakioueupekm33ap1pjpj17se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
