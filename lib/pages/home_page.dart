@@ -346,12 +346,28 @@ class _HomePageState extends State<HomePage> {
                                                               FontWeight.bold,
                                                           color: Colors.green)),
                                                   IconButton(
-                                                    icon: const FaIcon(
+                                                    icon: ShaderMask(
+                                                      shaderCallback:
+                                                          (Rect bounds) {
+                                                        return const LinearGradient(
+                                                          colors: [
+                                                            Colors.deepPurple,
+                                                            Colors.purpleAccent
+                                                          ],
+                                                          begin:
+                                                              Alignment.topLeft,
+                                                          end: Alignment
+                                                              .bottomRight,
+                                                        ).createShader(bounds);
+                                                      },
+                                                      child: const FaIcon(
                                                         FontAwesomeIcons
                                                             .cartPlus,
                                                         size: 16,
-                                                        color:
-                                                            Colors.deepOrange),
+                                                        color: Colors
+                                                            .white, // must be white to show gradient correctly
+                                                      ),
+                                                    ),
                                                     onPressed: () {
                                                       if (user?.email == null) {
                                                         Fluttertoast.showToast(
@@ -389,8 +405,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: Colors.transparent,
+          floatingActionButton: RawMaterialButton(
             onPressed: () {
               if (user == null) {
                 Fluttertoast.showToast(
@@ -403,34 +418,37 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (_) => const CartPage()),
               ).then((_) => fetchCartCount());
             },
-            label: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 140, // Adjust max width to your liking
+            fillColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(16), // ✅ Customize radius here
+            ),
+            constraints: const BoxConstraints.tightFor(
+              width: 120, // ✅ Control width here
+              height: 56, // Optional: control height
+            ),
+            elevation: 6.0,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Colors.deepPurple, Colors.purpleAccent],
+                ),
+                borderRadius: BorderRadius.circular(16),
               ),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Colors.deepPurple, Colors.purpleAccent],
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const FaIcon(FontAwesomeIcons.cartShopping,
+                      color: Colors.white),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Cart ($cartCount)',
+                    style: const TextStyle(color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const FaIcon(FontAwesomeIcons.cartShopping,
-                        color: Colors.white),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        'Cart ($cartCount)',
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
+                ],
               ),
             ),
           ),

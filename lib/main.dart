@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Page imports
 import 'pages/login_page.dart';
@@ -14,23 +15,15 @@ import 'pages/payment_history_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
 
   // Set your Stripe publishable key here (replace with your actual key)
-  Stripe.publishableKey =
-      'pk_test_51RUKu4IDHiKdAOQ6yHmb7b70UWILHsnQp3kWLfR5DT8xCkeFLDw3XOnD4zo0yDsimI2i50Sm0p1wzEYzivHtXRnh005hITfUFc';
+  Stripe.publishableKey = dotenv.env['VITE_Payment_Gateway_SK'] ?? '';
 
   Stripe.merchantIdentifier = 'merchant.flutter.stripe.test';
   Stripe.urlScheme = 'flutterstripe';
   await Stripe.instance.applySettings();
-  // try {
-  //   // Your Stripe initialization code here
-  //   await Stripe.instance.applySettings(); // or whatever your init call is
-  //   print('Stripe initialized successfully');
-  // } catch (e, stacktrace) {
-  //   print('⚠️ Stripe initialization failed: $e');
-  //   print('Stack trace: $stacktrace');
-  // }
 
   runApp(const BistroBossApp());
 }

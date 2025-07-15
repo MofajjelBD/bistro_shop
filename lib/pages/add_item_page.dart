@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../models/food_item.dart';
@@ -98,7 +99,7 @@ class _AddItemPageState extends State<AddItemPage>
 
   Future<void> _uploadImageToImgbb() async {
     if (_image == null) return;
-    const apiKey = '150b5ddfef32c337771f226063c54efa';
+    final apiKey = dotenv.env['VITE_IMG_BB_API_KEY'];
 
     final bytes = await _image!.readAsBytes();
     final base64Image = base64Encode(bytes);
