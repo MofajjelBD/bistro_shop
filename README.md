@@ -1,4 +1,4 @@
-# bistro_boss
+# bistro_shop
 
 A new Flutter project.
 
